@@ -467,10 +467,15 @@ extern int soft_i2c_gpio_scl;
 #define PARTS_DEFAULT \
 	"name=loader1,start=8k,size=32k,uuid=${uuid_gpt_loader1};" \
 	"name=loader2,size=984k,uuid=${uuid_gpt_loader2};" \
+	"name=misc,size=1M,uuid=${uuid_gpt_misc};" \
 	"name=esp,size=128M,bootable,uuid=${uuid_gpt_esp};" \
-	"name=system,size=-,uuid=${uuid_gpt_system};"
+	"name=system_a,size=2G,uuid=${uuid_gpt_system};" \
+	"name=system_b,size=2G,uuid=${uuid_gpt_system};" \
+	"name=data,size=-,uuid=${uuid_gpt_data};"
 
+#define UUID_GPT_MISC "ef32a33b-a409-486c-9141-9ffb711f6266"
 #define UUID_GPT_ESP "c12a7328-f81f-11d2-ba4b-00a0c93ec93b"
+#define UUID_GPT_DATA "ebd0a0a2-b9e5-4433-87c0-68b6b72699c7"
 
 #ifdef CONFIG_ARM64
 #define UUID_GPT_SYSTEM "b921b045-1df0-41c3-af44-4c6f280d3fae"
@@ -496,8 +501,10 @@ extern int soft_i2c_gpio_scl;
 	"console=ttyS0,115200\0" \
 	SUNXI_MTDIDS_DEFAULT \
 	SUNXI_MTDPARTS_DEFAULT \
+	"uuid_gpt_misc=" UUID_GPT_MISC "\0" \
 	"uuid_gpt_esp=" UUID_GPT_ESP "\0" \
 	"uuid_gpt_system=" UUID_GPT_SYSTEM "\0" \
+	"uuid_gpt_data=" UUID_GPT_DATA "\0" \
 	"partitions=" PARTS_DEFAULT "\0" \
 	BOOTCMD_SUNXI_COMPAT \
 	BOOTENV
